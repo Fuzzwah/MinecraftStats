@@ -10,6 +10,7 @@ mcstats.showAwardsList = function() {
         var holder, info;
 
         if(award.best) {
+            console.log("yes award")
             holder = mcstats.playerWidget(award.best.uuid);
             info = award.desc + ': ' + mcstats.formatValue(award.best.value, award.unit, true);
 
@@ -27,13 +28,15 @@ mcstats.showAwardsList = function() {
                         </div>
                     </div>
                 </div>
+                <!-- test -->
             `;
-        }
-
-        if(++counter >= numPerRow) {
-            viewHTML += `<div class="row">${currentRow}</div>`;
-            currentRow = '';
-            counter = 0;
+            if(++counter >= numPerRow) {
+                viewHTML += `<div class="row">${currentRow}</div>`;
+                currentRow = '';
+                counter = 0;
+            }
+        }else{
+            console.log("no award")
         }
     });
 
