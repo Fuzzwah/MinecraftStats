@@ -13,7 +13,7 @@ mcstats.showPlayer = function(uuid) {
                 var value = mcstats.formatValue(stat ? stat.value : 0, award.unit, true);
                 var rankWidget = stat ? mcstats.rankWidget(stat.rank) : '';
 
-                if(rankWidget!=''){
+                if(stat.value>0){
                     tbody += `
                     <tr>
                         <td class="text-end">${rankWidget}</td>
@@ -35,7 +35,7 @@ mcstats.showPlayer = function(uuid) {
                 var value = mcstats.formatValue(stat ? stat.value : 0, award.unit, true);
                 var rankWidget = stat ? mcstats.rankWidget(stat.rank) : '';
 
-                if(rankWidget==''){
+                if(stat.value==0){
                     tbody += `
                     <tr>
                         <td class="text-end">${rankWidget}</td>
