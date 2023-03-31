@@ -13,7 +13,8 @@ mcstats.showPlayer = function(uuid) {
                 var value = mcstats.formatValue(stat ? stat.value : 0, award.unit, true);
                 var rankWidget = stat ? mcstats.rankWidget(stat.rank) : '';
 
-                tbody += `
+                if(rankWidget!=''){
+                    tbody += `
                     <tr>
                         <td class="text-end">${rankWidget}</td>
                         <td>${awardWidget}</td>
@@ -23,7 +24,31 @@ mcstats.showPlayer = function(uuid) {
                         </td>
                     </tr>
                 `;
+                }
+
             });
+            mcstats.awardKeysByTitle.forEach(function(id) {
+                var stat = stats[id];
+
+                var award = mcstats.awards[id];
+                var awardWidget = mcstats.awardWidget(id);
+                var value = mcstats.formatValue(stat ? stat.value : 0, award.unit, true);
+                var rankWidget = stat ? mcstats.rankWidget(stat.rank) : '';
+
+                if(rankWidget==''){
+                    tbody += `
+                    <tr>
+                        <td class="text-end">${rankWidget}</td>
+                        <td>${awardWidget}</td>
+                        <td>
+                            <span class="text-muted">${award.desc}:</span>&nbsp;
+                            <span class="text-data">${value}</span>
+                        </td>
+                    </tr>
+                `;
+                }
+
+            });            
 
             mcstats.viewContent.innerHTML = `
                 <div class="mcstats-entry p-1">
